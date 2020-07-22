@@ -13,4 +13,3 @@ For i3wm
 
 For Vim
 + keep it simple
-+ add git-gutter someday
