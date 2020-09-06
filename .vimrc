@@ -24,7 +24,8 @@ Plug 'Raimondi/delimitMate'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'sainnhe/gruvbox-material'
+" Plug 'sainnhe/gruvbox-material'
+Plug 'morhetz/gruvbox'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
@@ -67,20 +68,17 @@ endif
 
 " gruvbox 
 let g:gruvbox_italic=1
-let g:lightline = {'colorscheme' : 'gruvbox_material'}
+let g:lightline = {'colorscheme' : 'gruvbox'}
 
 set background=dark
 
 " Available values: 'hard', 'medium'(default), 'soft'
-let g:gruvbox_material_background = 'hard'
+" let g:gruvbox_material_background = 'hard'
 
-colorscheme gruvbox-material 
+colorscheme gruvbox
 
 " leader key mapped to SPACEBAR
 let mapleader= " "
 
 " NERDTree toggle
 map <leader>n :NERDTreeToggle<CR>
-
-" saves file and formats it with Prettier
-nnoremap <leader>s :wincmd w <bar> :Prettier<CR>
