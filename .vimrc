@@ -25,8 +25,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 " Plug 'sainnhe/gruvbox-material'
-Plug 'morhetz/gruvbox'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'sainnhe/sonokai'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
@@ -42,20 +41,9 @@ set cmdheight=2 " Give more space for displaying messages.
 set signcolumn=yes " Always show the signcolumn, otherwise it would shift the text each time
 set shortmess+=c " Don't pass messages to |ins-completion-menu|.
 
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet']
+let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet'] 
 let g:coc_disable_startup_warning = 1
-
-" Go highlighting
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_types = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_variable_assignments = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_function_calls = 1
-
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " delimitMate expand <CR> 
 " moves cursor to new line and TABS after () [] {}
@@ -66,16 +54,21 @@ if has('termguicolors')
   set termguicolors
 endif
 
-" gruvbox 
-let g:gruvbox_italic=1
-let g:lightline = {'colorscheme' : 'gruvbox'}
-
 set background=dark
 
-" Available values: 'hard', 'medium'(default), 'soft'
-" let g:gruvbox_material_background = 'hard'
+" gruvbox 
+" let g:gruvbox_italic=1
+let g:lightline = {'colorscheme' : 'sonokai'}
 
-colorscheme gruvbox
+" gruvbox-material
+" let g:gruvbox_material_enable_italic = 1
+" let g:gruvbox_material_background = 'hard'
+" let g:gruvbox_material_enable_bold = 1
+
+" sonokai
+let g:sonokai_enable_italic = 1
+
+colorscheme sonokai 
 
 " leader key mapped to SPACEBAR
 let mapleader= " "
