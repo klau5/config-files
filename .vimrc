@@ -20,16 +20,14 @@ set wildmode=list:full
 call plug#begin('~/.vim/plugged')
 
 Plug 'itchyny/lightline.vim'
-Plug 'Raimondi/delimitMate'
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
-" Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/sonokai'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'
+Plug 'Raimondi/delimitMate'
 
 call plug#end()
 
@@ -45,7 +43,6 @@ let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-
 let g:coc_disable_startup_warning = 1
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-" delimitMate expand <CR> 
 " moves cursor to new line and TABS after () [] {}
 let delimitMate_expand_cr = 1
 
@@ -55,19 +52,10 @@ if has('termguicolors')
 endif
 
 set background=dark
-
-" gruvbox 
-" let g:gruvbox_italic=1
 let g:lightline = {'colorscheme' : 'sonokai'}
-
-" gruvbox-material
-" let g:gruvbox_material_enable_italic = 1
-" let g:gruvbox_material_background = 'hard'
-" let g:gruvbox_material_enable_bold = 1
 
 " sonokai
 let g:sonokai_enable_italic = 1
-
 colorscheme sonokai 
 
 " leader key mapped to SPACEBAR
