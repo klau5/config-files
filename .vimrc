@@ -59,14 +59,10 @@ let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-
 let g:coc_disable_startup_warning = 1
 
 " Find files using Coc-Explorer
-map <leader>n :CocCommand explorer<CR>
+nmap <leader>n :CocCommand explorer<CR>
 
 " save file
 :nnoremap <leader>w :w<CR>
-
-" quit & quit all
-:map <leader>q :q<CR>
-:map <leader>qa :qa<CR>
 
 " Formatting selected code.
 xmap <leader>f ggVG <Plug>(coc-format-selected)
