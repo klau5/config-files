@@ -58,7 +58,7 @@ set signcolumn=yes " Always show the signcolumn, otherwise it would shift the te
 set shortmess+=c 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet', 'coc-explorer'] 
+let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet', 'coc-explorer', 'coc-phpls'] 
 let g:coc_disable_startup_warning = 1
 
 " Find files using Coc-Explorer
