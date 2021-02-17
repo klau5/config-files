@@ -2,6 +2,7 @@ syntax on
 
 set noerrorbells
 set tabstop=4 softtabstop=4
+set filetype=on
 set shiftwidth=4
 set expandtab
 set smartindent
@@ -15,52 +16,65 @@ set termguicolors
 set mouse=a
 set wildmenu
 set wildmode=list:full
-set termguicolors
 set autoindent
 filetype plugin indent on
 
-" Plugins
+" Pluggins
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'sainnhe/sonokai'
 Plug 'itchyny/lightline.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'Yggdroot/indentLine'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
+
+" Coc Settings
+let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet', 'coc-phpls'] 
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set hidden " TextEdit might fail if hidden is not set.
+set cmdheight=1 " Give more space for displaying messages.
+set signcolumn=yes " Always show the signcolumn, otherwise it would shift the text each time
+set shortmess+=c
+
+" leader key mapped to SPACEBAR
+let mapleader= " "
+
+" open explorer
+nnoremap <leader>n :Ex<CR>
 
 " Important!!
 if has('termguicolors')
   set termguicolors
 endif
 
-set guifont=SauceCodePro\ Nerd\ Font:h11
-
-" sonokai
+" colorscheme
 colorscheme sonokai
 let g:sonokai_enable_italic = 1
 let g:lightline = {'colorscheme' : 'sonokai'}
 set background=dark
 
-" leader key mapped to SPACEBAR
-let mapleader= " "
-
 " moves cursor to new line and TABS after () [] {}
 let delimitMate_expand_cr = 1
 
-" coc settings
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-set hidden " TextEdit might fail if hidden is not set.
-set cmdheight=1 " Give more space for displaying messages.
-set signcolumn=yes " Always show the signcolumn, otherwise it would shift the text each time
-set shortmess+=c 
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" Nerdtree
+nnoremap <C-n> :NERDTreeToggle<CR>
 
-let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet', 'coc-explorer', 'coc-phpls'] 
-let g:coc_disable_startup_warning = 1
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" Find files using Coc-Explorer
-map <leader>n :CocCommand explorer<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
+" Indent line distinct characters
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
