@@ -15,6 +15,9 @@ set termguicolors
 set mouse=a
 set wildmenu
 set wildmode=list:full
+set termguicolors
+set autoindent
+filetype plugin indent on
 
 " Plugins
 call plug#begin('~/.vim/plugged')
