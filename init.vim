@@ -12,6 +12,7 @@ set smartcase
 set noswapfile
 set incsearch
 set laststatus=2
+set showtabline=2
 set termguicolors
 set mouse=a
 set wildmenu
@@ -22,9 +23,9 @@ filetype plugin indent on
 " Pluggins
 call plug#begin('~/.config/nvim/plugged')
 
-" Plug 'sainnhe/sonokai'
 Plug 'ghifarit53/tokyonight-vim'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'preservim/nerdtree'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
@@ -38,7 +39,7 @@ Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " Coc Settings
-let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet', 'coc-phpls', 'coc-explorer'] 
+let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet', 'coc-phpls'] 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 set hidden " TextEdit might fail if hidden is not set.
 set cmdheight=1 " Give more space for displaying messages.
@@ -48,31 +49,30 @@ set shortmess+=c
 " leader key mapped to SPACEBAR
 let mapleader= " "
 
-" open explorer
-nnoremap <leader>n :Ex<CR>
-
 " Important!!
 if has('termguicolors')
   set termguicolors
 endif
 
 " colorscheme
-" colorscheme sonokai
-" let g:lightline = {'colorscheme' : 'sonokai'}
-" let g:sonokai_enable_italic = 1
-" set background=dark
+set background=dark
 colorscheme tokyonight 
-let g:lightline = {'colorscheme' : 'tokyonight'}
 let g:tokyonight_enable_italic= 1
 let g:tokyonight_style='night'
+
+" airline 
+" let g:airline_powerline_fonts= 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline_section_z = ''
+let g:airline_section_warning = '%{strftime("%c")}'
 
 " moves cursor to new line and TABS after () [] {}
 let delimitMate_expand_cr = 1
 
 " Nerdtree
 nnoremap <C-n> :NERDTreeToggle<CR>
-" Coc-explorer
-nmap <C-n> :CocCommand explorer<CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -113,6 +113,8 @@ nnoremap <S-TAB> :bprevious<CR>
 
 " Better way to save
 nnoremap <C-s> :w<CR>
+" Better way to quit
+nnoremap <C-q> :q<CR>
 
 " VIM Keymaps
 nmap <leader>h :wincmd h<CR>
