@@ -9,7 +9,7 @@
         "php"
     ],
     "prettier.tabWidth": 4,
-    "intelephense.format.braces": "k&r",
+    "intelephense.format.braces": "psr12",
     "intelephense.files.exclude": [
         "**/.git/**",
         "**/.svn/**",
