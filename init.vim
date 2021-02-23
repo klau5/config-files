@@ -113,8 +113,10 @@ nnoremap <S-TAB> :bprevious<CR>
 
 " Better way to save
 nnoremap <C-s> :w<CR>
-" Better way to quit
+" Better way to quit 
 nnoremap <C-q> :q<CR>
+" Better way to close buffers
+nnoremap <leader>c :close<CR>
 
 " VIM Keymaps
 nmap <leader>h :wincmd h<CR>
@@ -122,8 +124,11 @@ nmap <leader>j :wincmd j<CR>
 nmap <leader>k :wincmd k<CR>
 nmap <leader>l :wincmd l<CR>
 
+" clear highlited search results
+nnoremap <silent> <Esc><Esc> :let @/=""<CR>
+
 " setup mapping to call :LazyGit
-nnoremap <silent> <C-g> :LazyGit<CR>
+nnoremap <silent> <C-l> :LazyGit<CR>
 
 let g:lazygit_floating_window_winblend = 0 " transparency of floating window
 let g:lazygit_floating_window_scaling_factor = 0.9 " scaling factor for floating window
