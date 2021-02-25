@@ -193,7 +193,7 @@ for_window [class=".*"] border pixel 1
 # smart_gaps on
 
 # persistent wallpaper
-exec_always feh --bg-scale /usr/share/backgrounds/gnome/adwaita-night.jpg
+# exec_always feh --bg-scale /usr/share/backgrounds/gnome/adwaita-night.jpg
 
 # personal keybindings
 bindsym $mod+b exec brave-browser
