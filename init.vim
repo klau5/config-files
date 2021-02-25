@@ -72,7 +72,7 @@ let g:airline_section_warning = '%{strftime("%c")}'
 let delimitMate_expand_cr = 1
 
 " Nerdtree
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -103,8 +103,8 @@ endfunction
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " Floaterm 
-nnoremap <C-t> :FloatermToggle<CR>
-tnoremap <C-t> <C-\><C-n>:FloatermToggle<CR>
+nnoremap <leader>t :FloatermToggle<CR>
+tnoremap <leader>t <C-\><C-n>:FloatermToggle<CR>
 
 " TAB to move between buffers
 nnoremap <TAB> :bnext<CR>
@@ -128,7 +128,7 @@ nmap <leader>l :wincmd l<CR>
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
 " setup mapping to call :LazyGit
-nnoremap <silent> <C-l> :LazyGit<CR>
+nnoremap <silent> <leader>g :LazyGit<CR>
 
 let g:lazygit_floating_window_winblend = 0 " transparency of floating window
 let g:lazygit_floating_window_scaling_factor = 0.9 " scaling factor for floating window
