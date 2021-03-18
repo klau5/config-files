@@ -13,6 +13,7 @@ set noswapfile
 set incsearch
 set laststatus=2
 set showtabline=2
+set scrolloff=8
 set termguicolors
 set mouse=a
 set wildmenu
