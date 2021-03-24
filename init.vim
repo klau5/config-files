@@ -24,7 +24,8 @@ filetype plugin indent on
 " Pluggins
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'ghifarit53/tokyonight-vim'
+" Plug 'ghifarit53/tokyonight-vim'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'vim-airline/vim-airline'
 Plug 'preservim/nerdtree'
 Plug 'Raimondi/delimitMate'
@@ -57,12 +58,13 @@ endif
 
 " colorscheme
 set background=dark
-colorscheme tokyonight 
-let g:tokyonight_enable_italic= 1
-let g:tokyonight_style='night'
+" colorscheme tokyonight 
+colorscheme challenger_deep
+" let g:tokyonight_enable_italic= 1
+" let g:tokyonight_style='night'
 
 " airline 
-" let g:airline_powerline_fonts= 1
+let g:airline_powerline_fonts= 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#left_sep = ' '
