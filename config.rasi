@@ -1,0 +1,7 @@
+configuration {
+ modi: "drun";
+ theme: "Arc-Dark";
+ font: "Fira Code 13";
+ show-icons: true;
+ icon-theme: "Yaru";
+ }
