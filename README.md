@@ -1,8 +1,10 @@
-# For i3-gaps
+# New system setup
 
 -   install feh for desktop wallpaper
 -   install lxappearance to change themes and icons
 -   install rofi
+-   install redshift-gtk
+-   install vscodium
 
 -   i3status bar
 
