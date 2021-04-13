@@ -4,6 +4,7 @@
 (set-keyboard-coding-system 'utf-8)
 
 (setq inhibit-startup-screen t)
+(setq make-backup-files nil)
 
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
