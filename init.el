@@ -14,7 +14,7 @@
 (line-number-mode +1)
 (global-display-line-numbers-mode 1)
 ;; change font
-(set-frame-font "Fira Code 11" nil t)
+(set-frame-font "Ubuntu Mono 11" nil t)
 ;; remove whitespace on filesave
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
@@ -70,37 +70,21 @@
   :config
   (global-flycheck-mode t))
 
-;; evil mode
-(use-package evil
-  :ensure t
-  :custom
-  (evil-esc-delay 0.001 "avoid ESC/meta mixups")
-  (evil-shift-width 4)
-  :config
-  (evil-mode 1))
-
 ;; theme
 (use-package darkokai-theme
   :ensure t
   :config
   (load-theme 'darkokai t))
 
-;; which key
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode))
-
 ;; ivy
 (use-package ivy
   :ensure t
+  :bind
+  ("C-s" . swiper)
   :custom
   (ivy-count-format "%d/%d ")
-  :bind
-  (("C-s" . #'swiper))
   :config
   (ivy-mode 1))
-
 
 ;; rainbow delimiters
 (use-package rainbow-delimiters
@@ -121,7 +105,8 @@
 (use-package web-mode
   :ensure t
   :mode
-  ("\\.html\\'" . web-mode)
+  ("\\.html?\\'" . web-mode)
+  ("\\.css?\\'" . web-mode)
   :config
   (setq web-mode-markup-indent-offset 2
 	web-mode-code-indent-offset 2
@@ -133,7 +118,7 @@
   :ensure t
   :hook
   (sgml-mode . emmet-mode)
-  (css-mode . emmet-mode)
+  (web-mode . emmet-mode)
   :config
   (emmet-mode t))
 
@@ -143,10 +128,12 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook
-  (web-mode . lsp-deferred)
+  ((web-mode . lsp-deferred)
   (js-mode . lsp-deferred)
-  (lsp-mode . lsp-enable-which-key-integration)
+  (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
+;;  :config
+;;  (setq lsp-diagnostics-provider :none))
 
 ;; prettier-js
 (use-package prettier-js
@@ -157,12 +144,6 @@
   :config
   (setq prettier-js-args '(
 	"--single-quote" "true")))
-
-;; mode line
-(use-package mood-line
-  :ensure t
-  :config
-  (mood-line-mode))
 
 ;; tree-sitter
 (use-package tree-sitter
@@ -184,9 +165,20 @@
   :after all-the-icons
   :hook (dired-mode . all-the-icons-dired-mode))
 
+;; evil mode
+(use-package evil
+  :ensure t
+  :custom
+  (evil-esc-delay 0.001 "avoid ESC/meta mixups")
+  (evil-shift-width 4)
+  :config
+  (evil-mode 1))
 
-
-
+;; mode line
+(use-package mood-line
+  :ensure t
+  :config
+  (mood-line-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -194,7 +186,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(all-the-icons-dired all-the-icons tree-sitter mood-line prettier-js emmet-mode lsp-mode web-mode dashboard company-box rainbow-delimiters darkokai-theme evil flycheck company which-key smartparens use-package)))
+   '(mood-line evil swiper all-the-icons-dired all-the-icons tree-sitter-langs tree-sitter prettier-js lsp-mode emmet-mode web-mode dashboard rainbow-delimiters ivy darkokai-theme flycheck company-box company which-key smartparens use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
