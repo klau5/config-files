@@ -67,8 +67,8 @@
 ;; syntax checking
 (use-package flycheck
   :ensure t
-  :config
-  (global-flycheck-mode t))
+  :init
+  (global-flycheck-mode))
 
 ;; theme
 (use-package darkokai-theme
@@ -186,7 +186,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(mood-line evil swiper all-the-icons-dired all-the-icons tree-sitter-langs tree-sitter prettier-js lsp-mode emmet-mode web-mode dashboard rainbow-delimiters ivy darkokai-theme flycheck company-box company which-key smartparens use-package)))
+   '(swiper-helm mood-line evil swiper all-the-icons-dired all-the-icons tree-sitter-langs tree-sitter prettier-js lsp-mode emmet-mode web-mode dashboard rainbow-delimiters ivy darkokai-theme flycheck company-box company which-key smartparens use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

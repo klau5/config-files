@@ -1,36 +1,29 @@
 # New system setup
+> **install**
+  *nitrogen lxappearance i3 rofi redshift-gtk vlc zsh kitty git nodejs neovim yaru-theme*
+  - vscodium, brave-browser, github-cli
+  - enable firewall : **sudo ufw enable**
 
-- install nitrogen for desktop wallpaper
-- install lxappearance to change themes and icons
-- install rofi
-- install redshift-gtk
-- install vscodium
+### i3status bar
+> i3status.conf
+- Location: /etc
 
-- i3status bar
+### i3 config file
+> config
+- Location: ~/.config/i3/
 
-  - i3status.conf
-  - Location: /etc/
+### rofi config file
+> config.rasi
+- Location: ~/.config/rofi/
 
-- i3 config file
+### For Vim
+> Single file for vim & neovim (init.vim)
+- Install [Lazygit](https://github.com/jesseduffield/lazygit) on system, required for vim plugin to work
 
-  - config
-  - Location: ~/.config/i3/
+#### Fix for wi-fi issues in Debian/Ubuntu
+> cd **/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf**
+  // set wifi power saving to off (default value is 3)
+  ***wifi.powersave = 2***
 
-- rofi config file
-  - Location: ~/.config/rofi/config.rasi
-
-For Vim
-
-- Single file for vim & neovim (init.vim)
-- Install Lazygit on system, required for vim plugin to work
-  (https://github.com/jesseduffield/lazygit)
-
-Fix for wi-fi issues in Debian/Ubuntu
-
-- cd /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
-- // set wifi power saving to off (default value is 3)
-- wifi.powersave = 2
-
-Fix for i3 not showing Network icon
-
-- install network-manager-applet
+#### Fix for i3 not showing Network icon
+> install ***network-manager-applet***

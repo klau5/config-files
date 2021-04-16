@@ -21,11 +21,12 @@ set wildmode=list:full
 set autoindent
 filetype plugin indent on
 
+
 " Pluggins
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'ghifarit53/tokyonight-vim'
-Plug 'vim-airline/vim-airline'
+Plug 'glepnir/spaceline.vim'
 Plug 'preservim/nerdtree'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
@@ -39,8 +40,9 @@ Plug 'voldikss/vim-floaterm'
 
 call plug#end()
 
+
 " Coc Settings
-let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet', 'coc-phpls'] 
+let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet', 'coc-eslint'] 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 set hidden " TextEdit might fail if hidden is not set.
 set cmdheight=1 " Give more space for displaying messages.
@@ -59,21 +61,18 @@ endif
 set background=dark
 colorscheme tokyonight 
 let g:tokyonight_enable_italic= 1
-let g:tokyonight_style='night'
+" let g:tokyonight_style='storm'
 
-" airline 
-let g:airline_powerline_fonts= 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline_section_z = ''
-let g:airline_section_warning = '%{strftime("%c")}'
+" spaceline
+let g:spaceline_seperate_style = 'slant-cons'
+let g:spaceline_colorscheme = 'nord'
 
 " moves cursor to new line and TABS after () [] {}
 let delimitMate_expand_cr = 1
 
 " Nerdtree
 nnoremap <leader>n :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
