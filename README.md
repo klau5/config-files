@@ -19,6 +19,7 @@
 ### For Vim
 > Single file for vim & neovim (init.vim)
 - Install [Lazygit](https://github.com/jesseduffield/lazygit) on system, required for vim plugin to work
+- Install gcc-c++ for treesitter parsers
 
 #### Fix for wi-fi issues in Debian/Ubuntu
 > cd **/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf**

@@ -1,6 +1,8 @@
 syntax on
 
 set noerrorbells
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 set tabstop=4 softtabstop=4
 set filetype=on
 set shiftwidth=4
@@ -12,31 +14,42 @@ set smartcase
 set noswapfile
 set incsearch
 set laststatus=2
-set showtabline=2
+" set showtabline=2
 set scrolloff=8
 set termguicolors
 set mouse=a
 set wildmenu
 set wildmode=list:full
 set autoindent
+set cmdheight=1
+set hidden
+set signcolumn=yes
 filetype plugin indent on
 
 
-" Pluggins
+" Plugins
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'ghifarit53/tokyonight-vim'
+Plug 'sainnhe/sonokai'
 Plug 'glepnir/spaceline.vim'
-Plug 'preservim/nerdtree'
 Plug 'Raimondi/delimitMate'
-Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
 Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
-Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/indentLine'
+Plug 'voldikss/vim-floaterm'
+
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'voldikss/vim-floaterm'
+Plug 'kyazdani42/nvim-web-devicons' 
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'norcalli/nvim-colorizer.lua'
+
 
 call plug#end()
 
@@ -44,10 +57,6 @@ call plug#end()
 " Coc Settings
 let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet', 'coc-eslint'] 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-set hidden " TextEdit might fail if hidden is not set.
-set cmdheight=1 " Give more space for displaying messages.
-set signcolumn=yes " Always show the signcolumn, otherwise it would shift the text each time
-set shortmess+=c
 
 " leader key mapped to SPACEBAR
 let mapleader= " "
@@ -57,59 +66,40 @@ if has('termguicolors')
   set termguicolors
 endif
 
+" moves cursor to new line and TABS after () [] {}
+let delimitMate_expand_cr = 1
+
+" statusline
+let g:spaceline_seperate_style = 'none'
+
 " colorscheme
 set background=dark
-colorscheme tokyonight 
-let g:tokyonight_enable_italic= 1
-" let g:tokyonight_style='storm'
+colorscheme sonokai
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
 
-" spaceline
-let g:spaceline_seperate_style = 'slant-cons'
-let g:spaceline_colorscheme = 'nord'
+" Lua options
+:lua << EOF
+    -- css colouriser
+    require'colorizer'.setup()
+
+    -- nvim-treesitter
+    require'nvim-treesitter.configs'.setup {
+      ensure_installed = {"typescript", "javascript", "css", "html", "json"},
+      highlight = {
+        enable = true
+      },
+      indent = {
+        enable = true
+      },
+    }
+EOF
 
 " moves cursor to new line and TABS after () [] {}
 let delimitMate_expand_cr = 1
 
-" Nerdtree
-nnoremap <leader>n :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Indent line distinct characters
+" Indent lin distinct characters
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-
-" Floaterm 
-nnoremap <leader>t :FloatermToggle<CR>
-tnoremap <leader>t <C-\><C-n>:FloatermToggle<CR>
-
-" TAB to move between buffers
-nnoremap <TAB> :bnext<CR>
-" SHIFT + TAB go back
-nnoremap <S-TAB> :bprevious<CR>
 
 " Better way to save
 nnoremap <C-s> :w<CR>
@@ -127,10 +117,65 @@ nmap <leader>l :wincmd l<CR>
 " clear highlited search results
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" nvim-tree
+let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
+let g:nvim_tree_indent_markers = 1
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 1,
+    \ 'files': 1,
+    \ }
+let g:nvim_tree_icons = {
+    \ 'default': '',
+    \ 'symlink': '',
+    \ 'git': {
+    \   'unstaged': "✗",
+    \   'staged': "✓",
+    \   'unmerged': "",
+    \   'renamed': "➜",
+    \   'untracked': "★",
+    \   'deleted': "",
+    \   'ignored': "◌"
+    \   },
+    \ 'folder': {
+    \   'default': "",
+    \   'open': "",
+    \   'empty': "",
+    \   'empty_open': "",
+    \   'symlink': "",
+    \   'symlink_open': "",
+    \   },
+    \   'lsp': {
+    \     'hint': "",
+    \     'info': "",
+    \     'warning': "",
+    \     'error': "",
+    \   }
+    \ }
+
+nnoremap <leader>n :NvimTreeToggle<CR>
+
+" CoC keybindings
+nmap <silent><C-p> <Plug>(coc-diagnostic-prev)
+nmap <silent><C-n> <Plug>(coc-diagnostic-next)
+
+" Applying codeAction to the selected region.
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+
 " setup mapping to call :LazyGit
 nnoremap <silent> <leader>g :LazyGit<CR>
 
-let g:lazygit_floating_window_winblend = 0 " transparency of floating window
-let g:lazygit_floating_window_scaling_factor = 0.9 " scaling factor for floating window
-let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
-let g:lazygit_use_neovim_remote = 1 " fallback to 0 if neovim-remote is not installed
