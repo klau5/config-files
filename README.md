@@ -1,3 +1,4 @@
+
 # New system setup
 > **install**
   *nitrogen lxappearance i3 rofi redshift-gtk vlc zsh kitty git nodejs neovim yaru-theme*
@@ -22,9 +23,13 @@
 - Install gcc-c++ for treesitter parsers
 
 #### Fix for wi-fi issues in Debian/Ubuntu
-> cd **/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf**
+> [Ubuntu] cd **/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf**
   // set wifi power saving to off (default value is 3)
   ***wifi.powersave = 2***
+  [Debian] cd **/etc/network/if-up.d**
+  (create new file *powersave_off* & make it executable)
+  **sudo chmod +x powersave_off**
 
 #### Fix for i3 not showing Network icon
 > install ***network-manager-applet***
+
