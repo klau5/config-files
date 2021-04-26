@@ -1,0 +1,15 @@
+#! /bin/sh
+set -e
+# Don't bother for loopback if [ "$IFACE" = lo ]; then
+exit 0
+fi
+# Only run from ifup. if [ "$MODE" != start ]; then
+exit 0
+fi
+# Only do it once (skip for inet6). if [ "$ADDRFAM" != inet ]; then
+exit 0
+fi
+# alt option
+# /sbin/iw dev wlp9s0f0 set power_save off
+/sbin/iwconfig wlp9s0f0 power off
+exit 0
