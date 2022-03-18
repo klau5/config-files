@@ -26,25 +26,25 @@ set hidden
 set signcolumn=yes
 filetype plugin indent on
 
-
-" Plugins
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'sainnhe/sonokai'
-Plug 'glepnir/spaceline.vim'
 Plug 'Raimondi/delimitMate'
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
-Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
 Plug 'Yggdroot/indentLine'
-Plug 'voldikss/vim-floaterm'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'nvim-lualine/lualine.nvim'
+
+Plug 'kyazdani42/nvim-tree.lua'
+
+Plug 'rebelot/kanagawa.nvim'
 
 Plug 'kyazdani42/nvim-web-devicons' 
 Plug 'kyazdani42/nvim-tree.lua'
@@ -53,9 +53,33 @@ Plug 'norcalli/nvim-colorizer.lua'
 
 call plug#end()
 
+colorscheme kanagawa
+
+
+
+lua << END
+require('lualine').setup()
+END
+
+lua << EOF
+    -- css colouriser
+    require'colorizer'.setup()
+
+    -- nvim-treesitter
+    require'nvim-treesitter.configs'.setup {
+      ensure_installed = "maintained",
+      highlight = {
+        enable = true
+      },
+      indent = {
+        enable = true
+      },
+    }
+EOF
+
 
 " Coc Settings
-let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet', 'coc-eslint'] 
+let g:coc_global_extensions = ['coc-prettier', 'coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-emmet', 'coc-eslint', 'coc-solargraph'] 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " leader key mapped to SPACEBAR
@@ -69,37 +93,11 @@ endif
 " moves cursor to new line and TABS after () [] {}
 let delimitMate_expand_cr = 1
 
-" statusline
-let g:spaceline_seperate_style = 'none'
+" Keybindings
+"
 
-" colorscheme
-set background=dark
-colorscheme sonokai
-let g:sonokai_style = 'andromeda'
-let g:sonokai_enable_italic = 1
-
-" Lua options
-:lua << EOF
-    -- css colouriser
-    require'colorizer'.setup()
-
-    -- nvim-treesitter
-    require'nvim-treesitter.configs'.setup {
-      ensure_installed = {"typescript", "javascript", "css", "html", "json"},
-      highlight = {
-        enable = true
-      },
-      indent = {
-        enable = true
-      },
-    }
-EOF
-
-" moves cursor to new line and TABS after () [] {}
-let delimitMate_expand_cr = 1
-
-" Indent lin distinct characters
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+" Nvim Tree
+nnoremap <C-n> :NvimTreeToggle<CR>
 
 " Better way to save
 nnoremap <C-s> :w<CR>
@@ -123,48 +121,6 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" nvim-tree
-let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
-let g:nvim_tree_indent_markers = 1
-let g:nvim_tree_show_icons = {
-    \ 'git': 1,
-    \ 'folders': 1,
-    \ 'files': 1,
-    \ }
-let g:nvim_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '',
-    \ 'git': {
-    \   'unstaged': "✗",
-    \   'staged': "✓",
-    \   'unmerged': "",
-    \   'renamed': "➜",
-    \   'untracked': "★",
-    \   'deleted': "",
-    \   'ignored': "◌"
-    \   },
-    \ 'folder': {
-    \   'default': "",
-    \   'open': "",
-    \   'empty': "",
-    \   'empty_open': "",
-    \   'symlink': "",
-    \   'symlink_open': "",
-    \   },
-    \   'lsp': {
-    \     'hint': "",
-    \     'info': "",
-    \     'warning': "",
-    \     'error': "",
-    \   }
-    \ }
-
-nnoremap <leader>n :NvimTreeToggle<CR>
-
 " CoC keybindings
 nmap <silent><C-p> <Plug>(coc-diagnostic-prev)
 nmap <silent><C-n> <Plug>(coc-diagnostic-next)
@@ -175,7 +131,3 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-
-" setup mapping to call :LazyGit
-nnoremap <silent> <leader>g :LazyGit<CR>
-
