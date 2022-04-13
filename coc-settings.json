@@ -6,23 +6,13 @@
     "html",
     "scss",
     "json",
-    "php"
+    "ruby"
   ],
   "prettier.tabWidth": 2,
   "prettier.singleQuote": true,
   "eslint.alwaysShowStatus": true,
-  "intelephense.format.braces": "psr12",
-  "intelephense.files.exclude": [
-    "**/.git/**",
-    "**/.svn/**",
-    "**/.hg/**",
-    "**/CVS/**",
-    "**/.DS_Store/**",
-    "**/node_modules/**",
-    "**/bower_components/**",
-    "**/vendor/**/{Tests,tests}/**",
-    "**/.history/**",
-    "**/vendor/**/vendor/**"
-  ],
-  "intelephense.files.associations": ["*.php", "*.phtml"]
+  "solargraph.completion": true,
+  "solargraph.hover": true,
+  "solargraph.diagnostics": true,
+  "solargraph.formatting": true
 }
