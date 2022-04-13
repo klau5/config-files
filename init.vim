@@ -44,7 +44,9 @@ Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'kyazdani42/nvim-tree.lua'
 
-Plug 'rebelot/kanagawa.nvim'
+" Plug 'rebelot/kanagawa.nvim'
+" Plug 'ronwoch/hotline-vim'
+Plug 'sainnhe/sonokai'
 
 Plug 'kyazdani42/nvim-web-devicons' 
 Plug 'kyazdani42/nvim-tree.lua'
@@ -53,9 +55,11 @@ Plug 'norcalli/nvim-colorizer.lua'
 
 call plug#end()
 
-colorscheme kanagawa
+let g:sonokai_style = 'andromeda'
+let g:sonokai_better_performance = 1
+colorscheme sonokai
 
-
+set background=dark
 
 lua << END
 require('lualine').setup()
@@ -69,6 +73,9 @@ lua << EOF
     require'nvim-treesitter.configs'.setup {
       ensure_installed = "maintained",
       highlight = {
+        enable = true
+      },
+      rainbow = {
         enable = true
       },
       indent = {
@@ -94,7 +101,6 @@ endif
 let delimitMate_expand_cr = 1
 
 " Keybindings
-"
 
 " Nvim Tree
 nnoremap <C-n> :NvimTreeToggle<CR>
@@ -123,7 +129,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " CoC keybindings
 nmap <silent><C-p> <Plug>(coc-diagnostic-prev)
-nmap <silent><C-n> <Plug>(coc-diagnostic-next)
+" nmap <silent><C-n> <Plug>(coc-diagnostic-next)
 
 " Applying codeAction to the selected region.
 xmap <leader>a  <Plug>(coc-codeaction-selected)
